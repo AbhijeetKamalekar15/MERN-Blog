@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user.route.js';
-import authRoutes from './routes/auth.route.js'
+import authRoutes from './routes/auth.route.js';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ mongoose.connect(process.env.MONGO)
 })
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 
