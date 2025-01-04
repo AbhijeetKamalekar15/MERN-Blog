@@ -12,6 +12,7 @@ import {
   deleteUserFailue,
   deleteUserStart,
   deleteUserSuccess,
+  signoutSuccess,
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -140,6 +141,22 @@ export default function DashProfile() {
       dispatch(deleteUserFailue(error.message));
     }
   };
+  const handleSignout = async () => {
+    try {
+      const res = await fetch('api/user/signout', {
+        method: 'POST',
+      });
+      if(!res.ok){
+        console.log(data.message);
+      }
+      else{
+        dispatch(signoutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
+      
+    }
+  }
   return (
     <div className="max-w-lg mx-auto p-3 w-full">
       <h1 className="my-7 text-center font-semibold text-3xl">Profile</h1>
@@ -236,7 +253,7 @@ export default function DashProfile() {
         >
           Delete Account
         </span>
-        <span className="text-blue-500 text-sm underline font-semibold cursor-pointer">
+        <span onClick={handleSignout} className="text-blue-500 text-sm underline font-semibold cursor-pointer">
           Sign Out
         </span>
       </div>
