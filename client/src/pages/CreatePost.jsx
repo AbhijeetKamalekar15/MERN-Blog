@@ -2,14 +2,18 @@ import { Button, FileInput, Select, TextInput } from 'flowbite-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import React, { useState } from 'react';
-import { Alert } from 'flowbite-react';
+import { Alert, Progress } from 'flowbite-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreatePost() {
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
-  const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
+  const [imageFileUploadProgress, setImageFileUploadProgress] = useState(0);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
   const [imageFileUploading, setImageFileUploading] = useState(false);
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({});
+  const [publishError, setPublishError] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -20,59 +24,79 @@ export default function CreatePost() {
   };
 
   const uploadImage = async () => {
+    if (!imageFile) {
+      setImageFileUploadError('Please select an image before uploading.');
+      return;
+    }
     setImageFileUploading(true);
     setImageFileUploadError(null);
+    setImageFileUploadProgress(0);
 
-    const formData = new FormData();
-    formData.append('file', imageFile);
-    // Replace with your Cloudinary upload preset and cloud name
-    formData.append('upload_preset', 'mern-blog'); 
-    formData.append('cloud_name', 'duztdbp0j'); 
+    const uploadFormData = new FormData();
+    uploadFormData.append('file', imageFile);
+    uploadFormData.append('upload_preset', 'mern-blog');
+    uploadFormData.append('cloud_name', 'duztdbp0j');
 
-    try {
-      const response = await fetch(
-        'https://api.cloudinary.com/v1_1/duztdbp0j/image/upload',
-        {
-          method: 'POST',
-          body: formData,
-        }
-      );
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://api.cloudinary.com/v1_1/duztdbp0j/image/upload', true);
 
-      const data = await response.json();
-      console.log(data.secure_url);
-      
-      if (response.ok) {
+    xhr.upload.onprogress = (event) => {
+      if (event.lengthComputable) {
+        const progress = Math.round((event.loaded / event.total) * 100);
+        setImageFileUploadProgress(progress);
+      }
+    };
+
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        const data = JSON.parse(xhr.responseText);
         setImageFileUrl(data.secure_url);
+        setFormData((prev) => ({ ...prev, image: data.secure_url }));
         setImageFileUploading(false);
       } else {
-        setImageFileUploadError(
-          'Could not upload image (File must be less than 2MB)'
-        );
+        setImageFileUploadError('Could not upload image (File must be less than 2MB)');
         setImageFileUploading(false);
       }
-    } catch (error) {
-      setImageFileUploadError(
-        'Could not upload image (File must be less than 2MB)'
-      );
+    };
+
+    xhr.onerror = () => {
+      setImageFileUploadError('Could not upload image. Please try again.');
       setImageFileUploading(false);
-    }
+    };
+
+    xhr.send(uploadFormData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement your post creation logic here, including handling the uploaded image URL
-    if (imageFileUrl) {
-      // Use imageFileUrl in your post creation logic
-      console.log('Image URL:', imageFileUrl); 
-      // Example: Send imageFileUrl to your backend API for post creation
+
+    try {
+      const res = await fetch('/api/post/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setPublishError(data.message);
+        return;
+      }
+
+      if (res.ok) {
+        setPublishError(null);
+        navigate(`/post/${data.slug}`);
+      }
+    } catch (error) {
+      setPublishError('Something went wrong');
     }
-    // ... rest of your form submission logic
   };
 
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
-      <form className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
             type="text"
@@ -80,8 +104,15 @@ export default function CreatePost() {
             required
             id="title"
             className="flex-1"
+            onChange={(e) =>
+              setFormData({ ...formData, title: e.target.value })
+            }
           />
-          <Select>
+          <Select
+            onChange={(e) =>
+              setFormData({ ...formData, category: e.target.value })
+            }
+          >
             <option value="uncategorized">Select a category</option>
             <option value="javascript">JavaScript</option>
             <option value="reactjs">React.js</option>
@@ -101,6 +132,11 @@ export default function CreatePost() {
             {imageFileUploading ? 'Uploading...' : 'Upload Image'}
           </Button>
         </div>
+        {imageFileUploading && (
+          <div className="my-4">
+            <Progress progress={imageFileUploadProgress} size="lg" color="blue" />
+          </div>
+        )}
         {imageFileUploadError && (
           <Alert color="failure">{imageFileUploadError}</Alert>
         )}
@@ -109,10 +145,17 @@ export default function CreatePost() {
             <img src={imageFileUrl} alt="Uploaded preview" className="w-full h-auto object-cover rounded-md" />
           </div>
         )}
-        <ReactQuill theme="snow" placeholder="Write something..." className="h-72 mb-12" />
+        <ReactQuill theme="snow" placeholder="Write something..." className="h-72 mb-12" onChange={(value) => {
+          setFormData({ ...formData, content: value });
+        }} />
         <Button type="submit" gradientDuoTone="purpleToPink" onClick={handleSubmit}>
           Publish
         </Button>
+        {publishError && (
+          <Alert className='mt-5' color='failure'>
+            {publishError}
+          </Alert>
+        )}
       </form>
     </div>
   );
