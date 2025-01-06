@@ -1,5 +1,3 @@
-//duztdbp0j
-
 import { Alert, Button, Modal, ModalBody, TextInput } from "flowbite-react";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -9,7 +7,7 @@ import {
   updateStart,
   updateSuccess,
   updateFailure,
-  deleteUserFailue,
+  deleteUserFailure,
   deleteUserStart,
   deleteUserSuccess,
   signoutSuccess,
@@ -56,13 +54,10 @@ export default function DashProfile() {
     formData.append("cloud_name", "duztdbp0j"); // Replace with your Cloudinary cloud name
 
     try {
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/duztdbp0j/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("https://api.cloudinary.com/v1_1/duztdbp0j/image/upload", {
+        method: "POST",
+        body: formData,
+      });
 
       const data = await response.json();
 
@@ -71,15 +66,11 @@ export default function DashProfile() {
         setFormData((prev) => ({ ...prev, profilePicture: data.secure_url }));
         setImageFileUploading(false);
       } else {
-        setImageFileUploadError(
-          "Could not upload image (File must be less than 2MB)"
-        );
+        setImageFileUploadError("Could not upload image (File must be less than 2MB)");
         setImageFileUploading(false);
       }
     } catch (error) {
-      setImageFileUploadError(
-        "Could not upload image (File must be less than 2MB)"
-      );
+      setImageFileUploadError("Could not upload image (File must be less than 2MB)");
       setImageFileUploading(false);
     }
   };
@@ -92,14 +83,17 @@ export default function DashProfile() {
     e.preventDefault();
     setUpdateUserError(null);
     setUpdateUserSuccess(null);
+
     if (Object.keys(formData).length === 0) {
       setUpdateUserError("No changes made");
       return;
     }
+
     if (imageFileUploading) {
       setUpdateUserError("Please wait for image to upload");
       return;
     }
+
     try {
       dispatch(updateStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
@@ -109,7 +103,9 @@ export default function DashProfile() {
         },
         body: JSON.stringify(formData),
       });
+
       const data = await res.json();
+
       if (!res.ok) {
         dispatch(updateFailure(data.message));
         setUpdateUserError(data.message);
@@ -125,40 +121,43 @@ export default function DashProfile() {
 
   const handleDeleteUser = async () => {
     setShowModal(false);
+
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`/api/user/delete/${currentUser._id}`,{
-        method: 'DELETE',
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: "DELETE",
       });
+
       const data = await res.json();
-      if(!res.ok){
+
+      if (!res.ok) {
         dispatch(deleteUserFailue(data.message));
-      }
-      else{
+      } else {
         dispatch(deleteUserSuccess(data));
       }
     } catch (error) {
       dispatch(deleteUserFailue(error.message));
     }
   };
+
   const handleSignout = async () => {
     try {
-      const res = await fetch('api/user/signout', {
-        method: 'POST',
+      const res = await fetch("api/user/signout", {
+        method: "POST",
       });
-      if(!res.ok){
+
+      if (!res.ok) {
         console.log(data.message);
-      }
-      else{
+      } else {
         dispatch(signoutSuccess());
       }
     } catch (error) {
       console.log(error.message);
-      
     }
-  }
+  };
+
   return (
-    <div className="max-w-lg mx-auto p-3 w-full">
+    <div className="mt-14 max-w-lg mx-auto p-3 w-full">
       <h1 className="my-7 text-center font-semibold text-3xl">Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
@@ -186,9 +185,7 @@ export default function DashProfile() {
                   left: 0,
                 },
                 path: {
-                  stroke: `rgba(62, 152, 199, ${
-                    imageFileUploadProgress / 100
-                  })`,
+                  stroke: `rgba(62, 152, 199, ${imageFileUploadProgress / 100})`,
                 },
               }}
             />
@@ -203,9 +200,7 @@ export default function DashProfile() {
             }`}
           />
         </div>
-        {imageFileUploadError && (
-          <Alert color="failure">{imageFileUploadError}</Alert>
-        )}
+        {imageFileUploadError && <Alert color="failure">{imageFileUploadError}</Alert>}
         <TextInput
           type="text"
           id="username"
@@ -253,7 +248,10 @@ export default function DashProfile() {
         >
           Delete Account
         </span>
-        <span onClick={handleSignout} className="text-blue-500 text-sm underline font-semibold cursor-pointer">
+        <span
+          onClick={handleSignout}
+          className="text-blue-500 text-sm underline font-semibold cursor-pointer"
+        >
           Sign Out
         </span>
       </div>
@@ -272,17 +270,7 @@ export default function DashProfile() {
           {error}
         </Alert>
       )}
-      {error && (
-        <Alert color="failure" className="mt-5">
-          {error}
-        </Alert>
-      )}
-      <Modal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        popup
-        size="md"
-      >
+      <Modal show={showModal} onClose={() => setShowModal(false)} popup size="md">
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
