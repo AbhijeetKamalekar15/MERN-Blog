@@ -102,113 +102,84 @@ export default function Search() {
   return (
     <div className="pt-16 flex flex-col md:flex-row">
       {/* Sidebar (Filter Section) */}
-      <div className="p-4 md:p-7 md:w-1/4 border-b md:border-r md:min-h-screen border-gray-500">
-        <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-          {/* Search Term Field */}
-          <div className="flex items-center gap-2">
-            <label className="whitespace-nowrap font-semibold">
-              Search Term:
-            </label>
-            <TextInput
-              placeholder="Search..."
-              id="searchTerm"
-              type="text"
-              value={sidebarData.searchTerm}
-              onChange={handleChange}
-              className="w-full"
-            />
-          </div>
+      {/* Sidebar (Filter Section) */}
+<div className="p-4 md:p-7 md:w-1/4 border-b md:border-r md:min-h-screen border-gray-500">
+  <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+    {/* Search Term Field */}
+    <div className="flex flex-col gap-1">
+      <label className="text-sm font-semibold">Search Term:</label>
+      <TextInput
+        placeholder="Search..."
+        id="searchTerm"
+        type="text"
+        value={sidebarData.searchTerm}
+        onChange={handleChange}
+        className="w-full text-sm"
+      />
+    </div>
 
-          {/* Sort Field */}
-          <div className="flex items-center gap-2">
-            <label className="font-semibold">Sort:</label>
-            <Select
-              onChange={handleChange}
-              value={sidebarData.sort}
-              id="sort"
-              className="w-full"
-            >
-              <option value="desc">Latest</option>
-              <option value="asc">Oldest</option>
-            </Select>
-          </div>
+    {/* Sort Field */}
+    <div className="flex flex-col gap-1">
+      <label className="text-sm font-semibold">Sort:</label>
+      <Select
+        onChange={handleChange}
+        value={sidebarData.sort}
+        id="sort"
+        className="w-full text-sm"
+      >
+        <option value="desc">Latest</option>
+        <option value="asc">Oldest</option>
+      </Select>
+    </div>
 
-          {/* Category Field */}
-          <div className="flex items-center gap-2">
-            <label className="font-semibold">Category:</label>
-            <Select
-              onChange={handleChange}
-              value={sidebarData.category}
-              id="category"
-              className="w-full"
-            >
-              <option value="uncategorized">Select a category</option>
-              <option value="Development">Development</option>
-              <option value="Frontend Development">Frontend Development</option>
-              <option value="Backend Development">Backend Development</option>
-              <option value="Fullstack Development">
-                Fullstack Development
-              </option>
-              <option value="Database Management">Database Management</option>
-              <option value="Web Performance Optimization">
-                Web Performance Optimization
-              </option>
-              <option value="DevOps in Web Development">
-                DevOps in Web Development
-              </option>
-              <option value="Programming Languages">
-                Programming Languages
-              </option>
-              <option value="Data Structures and Algorithms">
-                Data Structures and Algorithms
-              </option>
-              <option value="Programming Paradigms">
-                Programming Paradigms
-              </option>
+    {/* Category Field */}
+    <div className="flex flex-col gap-1">
+      <label className="text-sm font-semibold">Category:</label>
+      <Select
+        onChange={handleChange}
+        value={sidebarData.category}
+        id="category"
+        className="w-full text-sm"
+      >
+        <option value="uncategorized">Select a category</option>
+        <option value="Development">Development</option>
+        <option value="Frontend Development">Frontend Development</option>
+        <option value="Backend Development">Backend Development</option>
+        <option value="Fullstack Development">Fullstack Development</option>
+        <option value="Database Management">Database Management</option>
+        <option value="Web Performance Optimization">Web Performance Optimization</option>
+        <option value="DevOps in Web Development">DevOps in Web Development</option>
+        <option value="Programming Languages">Programming Languages</option>
+        <option value="Data Structures and Algorithms">Data Structures and Algorithms</option>
+        <option value="Programming Paradigms">Programming Paradigms</option>
+        <option value="Frameworks and Libraries">Frameworks and Libraries</option>
+        <option value="APIs and Integrations">APIs and Integrations</option>
+        <option value="Testing and Debugging">Testing and Debugging</option>
+        <option value="AI & ML">AI & ML</option>
+        <option value="Machine Learning in Web Development">
+          Machine Learning in Web Development
+        </option>
+        <option value="Cybersecurity">Cybersecurity</option>
+        <option value="Blockchain and Web3 Development">Blockchain and Web3 Development</option>
+        <option value="Mobile-Friendly Web Development">Mobile-Friendly Web Development</option>
+        <option value="Open Source Contributions">Open Source Contributions</option>
+        <option value="Emerging Trends">Emerging Trends</option>
+        <option value="Other">Other</option>
+      </Select>
+    </div>
 
-              <option value="Frameworks and Libraries">
-                Frameworks and Libraries
-              </option>
-              <option value="APIs and Integrations">
-                APIs and Integrations
-              </option>
+    {/* Apply Filters Button */}
+    <Button
+      type="submit"
+      outline
+      gradientDuoTone="purpleToPink"
+      className="mt-4 text-sm"
+    >
+      Apply Filters
+    </Button>
+  </form>
+</div>
 
-              <option value="Testing and Debugging">
-                Testing and Debugging
-              </option>
-              <option value="AI & ML">
-              AI & ML
-              </option>
-              <option value="Machine Learning in Web Development">
-                Machine Learning in Web Development
-              </option>
-              <option value="Cybersecurity">Cybersecurity</option>
-              <option value="Blockchain and Web3 Development">
-                Blockchain and Web3 Development
-              </option>
-              <option value="Mobile-Friendly Web Development">
-                Mobile-Friendly Web Development
-              </option>
-              <option value="Open Source Contributions">
-                Open Source Contributions
-              </option>
-              <option value="Emerging Trends">Emerging Trends</option>
-              <option value="Other">Other</option>
-            </Select>
-            
-          </div>
-
-          {/* Apply Filters Button */}
-          <Button
-            type="submit"
-            outline
-            gradientDuoTone="purpleToPink"
-            className="mt-4"
-          >
-            Apply Filters
-          </Button>
-        </form>
-      </div>
 
       {/* Posts Section */}
       <div className="w-full">
