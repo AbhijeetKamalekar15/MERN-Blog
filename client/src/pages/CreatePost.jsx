@@ -94,7 +94,7 @@ export default function CreatePost() {
   };
 
   return (
-    <div className="p-3 max-w-3xl mx-auto min-h-screen">
+    <div className="p-3 max-w-3xl mx-auto min-h-screen mt-14">
       <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
@@ -109,15 +109,36 @@ export default function CreatePost() {
             }
           />
           <Select
-            onChange={(e) =>
-              setFormData({ ...formData, category: e.target.value })
-            }
-          >
-            <option value="uncategorized">Select a category</option>
-            <option value="javascript">JavaScript</option>
-            <option value="reactjs">React.js</option>
-            <option value="nextjs">Next.js</option>
-          </Select>
+  onChange={(e) =>
+    setFormData({ ...formData, category: e.target.value })
+  }
+>
+  <option value="uncategorized">Select a category</option>
+  <option value="AI & ML">AI & ML</option>
+  <option value="APIs and Integrations">APIs and Integrations</option>
+  <option value="Backend Development">Backend Development</option>
+  <option value="Blockchain and Web3 Development">Blockchain and Web3 Development</option>
+  <option value="Cybersecurity">Cybersecurity</option>
+  <option value="Data Structures and Algorithms">Data Structures and Algorithms</option>
+  <option value="Database Management">Database Management</option>
+  <option value="DevOps in Web Development">DevOps in Web Development</option>
+  <option value="Development">Development</option>
+  <option value="Emerging Trends">Emerging Trends</option>
+  <option value="Frontend Development">Frontend Development</option>
+  <option value="Frameworks and Libraries">Frameworks and Libraries</option>
+  <option value="Fullstack Development">Fullstack Development</option>
+  <option value="Machine Learning in Web Development">Machine Learning in Web Development</option>
+  <option value="Mobile-Friendly Web Development">Mobile-Friendly Web Development</option>
+  <option value="Open Source Contributions">Open Source Contributions</option>
+  <option value="Programming Languages">Programming Languages</option>
+  <option value="Programming Paradigms">Programming Paradigms</option>
+  <option value="Testing and Debugging">Testing and Debugging</option>
+  <option value="Web Performance Optimization">Web Performance Optimization</option>
+  <option value="Other">Other</option>
+</Select>
+
+            
+          
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
           <FileInput type="file" accept="image/*" onChange={handleImageChange} />

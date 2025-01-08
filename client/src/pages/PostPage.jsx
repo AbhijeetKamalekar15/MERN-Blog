@@ -59,7 +59,7 @@ export default function PostPage() {
     );
   return (
     
-    <main className='mt-14 p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
+    <main className='mt-14 p-3 flex flex-col w-full mx-auto min-h-screen'>
       <h1 className='text-3xl mt-2 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
         {post && post.title}
       </h1>
@@ -74,7 +74,7 @@ export default function PostPage() {
       <img
         src={post && post.image}
         alt={post && post.title}
-        className='mt-6 p-3 max-h-[600px] max-w-[600px] object-cover mx-auto'
+        className='mt-6 p-3 max-h-[600px] max-w-[600px] w-full object-cover mx-auto'
       />
       <div className='flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs'>
         <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
@@ -86,11 +86,11 @@ export default function PostPage() {
         className='p-3 max-w-2xl mx-auto w-full post-content text-sm text-justify'
         dangerouslySetInnerHTML={{ __html: post && post.content }}
       ></div>
-      <div className='max-w-4xl mx-auto w-full'>
+     
+      <CommentSection postId={post._id} />
+      <div className='max-w-4xl mx-auto max-w-xl'>
         <CallToAction />
       </div>
-      <CommentSection postId={post._id} />
-
       <div className='flex flex-col justify-center items-center mb-5'>
         <h1 className='text-xl mt-5'>Recent articles</h1>
         <div className='flex flex-wrap gap-5 mt-5 justify-center'>

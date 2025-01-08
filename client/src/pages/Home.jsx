@@ -15,7 +15,7 @@ export default function Home() {
     fetchPosts();
   }, []);
   return (
-    <div className="mt-14 mb-4">
+    <div className="mt-14 mb-4 ">
       <div className="flex flex-col gap-6 px-10 lg:px-20 py-12 w-full lg:max-w-6xl mx-auto ">
         <h1 className="text-4xl font-bold lg:text-5xl">
           Welcome to ByteBlog by ECN <br />{" "}
@@ -44,11 +44,16 @@ export default function Home() {
       <div className="w-full mx-auto p-3 items-center flex flex-col gap-8">
         {posts && posts.length > 0 && (
           <div className="flex flex-col gap-6">
-            <h2 className="text-2xl font-semibold text-center w-full bg-gray-500 text-white">
+             
+
+
+
+
+            <h2 className="text-2xl font-semibold text-center w-full bg-gray-500 text-white ">
               Recent Posts
             </h2>
-            <div className="flex flex-wrap gap-4">
-              {posts.slice(0, 4).map((post) => (
+            <div className="flex flex-wrap justify-center gap-8">
+              {posts.slice(0, 8).map((post) => (
                 <PostCard key={post._id} post={post} />
               ))}
             </div>
@@ -62,8 +67,8 @@ export default function Home() {
         )}
       </div>
 
-      <div className="p-20">
-        <div className="p-10 bg-amber-100 dark:bg-slate-700">
+      <div className="p-6 md:p-10 lg:p-20 w-full md:w-2/3 lg:w-1/2 m-auto justify-center items-center">
+        <div className="p-4 bg-blue-800 dark:bg-slate-700 rounded-lg shadow-lg">
           <CallToAction />
         </div>
       </div>
