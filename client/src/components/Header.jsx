@@ -49,33 +49,33 @@ export default function Header() {
   };
 
   return (
-    <Navbar className='border-b-2'>
+    <Navbar className="border-b-2 fixed top-0 w-full z-50 bg-white dark:bg-gray-900">
       <Link
-        to='/'
-        className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
+        to="/"
+        className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
       >
-        <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>
+        <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
           Sahand's
         </span>
         Blog
       </Link>
       <form onSubmit={handleSubmit}>
         <TextInput
-          type='text'
-          placeholder='Search...'
+          type="text"
+          placeholder="Search..."
           rightIcon={AiOutlineSearch}
-          className='hidden lg:inline'
+          className="hidden lg:inline"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
-      <Button className='w-12 h-10 lg:hidden' color='gray' pill>
+      <Button className="w-12 h-10 lg:hidden" color="gray" pill>
         <AiOutlineSearch />
       </Button>
-      <div className='flex gap-2 md:order-2'>
+      <div className="flex gap-2 md:order-2">
         <Button
-          className='w-12 h-10 hidden sm:inline'
-          color='gray'
+          className="w-12 h-10 hidden sm:inline"
+          color="gray"
           pill
           onClick={() => dispatch(toggleTheme())}
         >
@@ -86,12 +86,12 @@ export default function Header() {
             arrowIcon={false}
             inline
             label={
-              <Avatar alt='user' img={currentUser.profilePicture} rounded />
+              <Avatar alt="user" img={currentUser.profilePicture} rounded />
             }
           >
             <Dropdown.Header>
-              <span className='block text-sm'>@{currentUser.username}</span>
-              <span className='block text-sm font-medium truncate'>
+              <span className="block text-sm">@{currentUser.username}</span>
+              <span className="block text-sm font-medium truncate">
                 {currentUser.email}
               </span>
             </Dropdown.Header>
@@ -102,8 +102,8 @@ export default function Header() {
             <Dropdown.Item onClick={handleSignout}>Sign out</Dropdown.Item>
           </Dropdown>
         ) : (
-          <Link to='/sign-in'>
-            <Button gradientDuoTone='purpleToBlue' outline>
+          <Link to="/sign-in">
+            <Button gradientDuoTone="purpleToBlue" outline>
               Sign In
             </Button>
           </Link>
@@ -112,13 +112,13 @@ export default function Header() {
       </div>
       <Navbar.Collapse>
         <Navbar.Link active={path === '/'} as={'div'}>
-          <Link to='/'>Home</Link>
+          <Link to="/">Home</Link>
         </Navbar.Link>
         <Navbar.Link active={path === '/about'} as={'div'}>
-          <Link to='/about'>About</Link>
+          <Link to="/about">About</Link>
         </Navbar.Link>
         <Navbar.Link active={path === '/projects'} as={'div'}>
-          <Link to='/projects'>Projects</Link>
+          <Link to="/projects">Projects</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
