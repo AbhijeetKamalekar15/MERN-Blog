@@ -69,12 +69,12 @@ export default function Header() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
-      <Button className="w-12 h-10 lg:hidden" color="gray" pill>
+      <Button className="w-12 h-10 lg:hidden hidden" color="gray" pill>
         <AiOutlineSearch />
       </Button>
       <div className="flex gap-2 md:order-2">
         <Button
-          className="w-12 h-10 hidden sm:inline"
+          className="w-12 h-10 sm:inline"
           color="gray"
           pill
           onClick={() => dispatch(toggleTheme())}
@@ -86,7 +86,7 @@ export default function Header() {
             arrowIcon={false}
             inline
             label={
-              <Avatar alt="user" img={currentUser.profilePicture} rounded />
+              <Avatar alt="user" img={currentUser.profilePicture} rounded className='ml-2'/>
             }
           >
             <Dropdown.Header>
