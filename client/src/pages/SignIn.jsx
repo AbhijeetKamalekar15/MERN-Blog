@@ -43,12 +43,12 @@ export default function Signin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-sm bg-white rounded-lg shadow-lg p-6">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 dark:bg-slate-900">
+      <div className="w-full max-w-sm bg-white rounded-lg shadow-lg p-6 dark:bg-slate-900 border">
         {/* Header */}
         <div className="text-center mb-6">
-          <Link to="/" className="font-bold text-2xl text-gray-800">
-            <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded text-white">Byte</span>
+          <Link to="/" className="font-bold text-2xl text-gray-800 dark:text-white">
+            <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-lg">Byte</span>
             Blog
           </Link>
           <p className="text-xs mt-2 text-gray-500">
