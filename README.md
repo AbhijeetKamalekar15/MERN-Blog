@@ -39,18 +39,18 @@ This project is a Full Stack MERN Blog Application, designed to be fully respons
 ## Screenshots
 
 
-![Home Page](./Screenshots/HomePage.png)
-![Home Page](./Screenshots/SignUp.png)
-![Home Page](./Screenshots/AllBlogs.png)
-![Home Page](./Screenshots/AboutPage.png)
-![Home Page](./Screenshots/ContactUs.png)
-![Home Page](./Screenshots/PostPage.png)
-![Home Page](./Screenshots/CommentSection.png)
-![Home Page](./Screenshots/Footer.png)
-![Home Page](./Screenshots/ProfilePage.png)
-![Home Page](./Screenshots/Dashboard.png)
-![Home Page](./Screenshots/Darkmode1.png)
-![Home Page](./Screenshots/Darkmode2.png)
+![Home Page](./Screenshots/HomePage.jpg)
+![Home Page](./Screenshots/SignUp.jpg)
+![Home Page](./Screenshots/AllBlogs.jpg)
+![Home Page](./Screenshots/AboutPage.jpg)
+![Home Page](./Screenshots/ContactUs.jpg)
+![Home Page](./Screenshots/PostPage.jpg)
+![Home Page](./Screenshots/CommentSection.jpg)
+![Home Page](./Screenshots/Footer.jpg)
+![Home Page](./Screenshots/ProfilePage.jpg)
+![Home Page](./Screenshots/Dashboard.jpg)
+![Home Page](./Screenshots/Darkmode1.jpg)
+![Home Page](./Screenshots/Darkmode2.jpg)
 
 
 
