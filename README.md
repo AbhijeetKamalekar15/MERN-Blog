@@ -40,31 +40,18 @@ This project is a Full Stack MERN Blog Application, designed to be fully respons
 
 
 ![Home Page](./Screenshots/HomePage.png)
-
-![Sign Up](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/c4186435b730bd70b9a38c807feab224/detailed)
-
-![All Blogs](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/97146c0ce89f81212f9e7ae1fddcbfc8/detailed)
-
-![About Page](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/e5948bb6df9012d3c7fc615c6cde537e/detailed)
-
-![Dashboard](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/eed9edb3d78902285087d0e5317563be/detailed)
-
-![Contact Page](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/a1063d5da2453d02c1994944aebab8ab/detailed)
-
-![Post Page](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/6a50739cdb586e8c97c26ab539739eda/detailed)
-
-![Comments Section](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/8466c3a772cfc59333098f2742326570/detailed)
-
-![Footer](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/8ffa1a1c6b818f5967477e46ca57465a/detailed)
-
-![Profile Page](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/7f1103ce224370c2accb46798d99c245/detailed)
-
-![Dashboard](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/eed9edb3d78902285087d0e5317563be/detailed)
-
-![Dark Mode 1](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/a6405a5c7c1c4e719f8d1b536a622706/detailed)
-
-
-![Dark Mode 2](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/faf02a1ec3be9ca53eea1502e17d2be7/detailed)
+![Home Page](./Screenshots/SignUp.png)
+![Home Page](./Screenshots/AllBlogs.png)
+![Home Page](./Screenshots/About-Page.png)
+![Home Page](./Screenshots/HomePage.png)
+![Home Page](./Screenshots/HomePage.png)
+![Home Page](./Screenshots/HomePage.png)
+![Home Page](./Screenshots/HomePage.png)
+![Home Page](./Screenshots/HomePage.png)
+![Home Page](./Screenshots/HomePage.png)
+![Home Page](./Screenshots/HomePage.png)
+![Home Page](./Screenshots/HomePage.png)
+![Home Page](./Screenshots/HomePage.png)
 
 
 
