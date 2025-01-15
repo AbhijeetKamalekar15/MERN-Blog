@@ -39,7 +39,7 @@ This project is a Full Stack MERN Blog Application, designed to be fully respons
 ## Screenshots
 
 
-![Home Page](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/cb7c0becedb9da890c91b7a073a133b5/detailed)
+![Home Page](./Screenshots/HomePage.png)
 
 ![Sign Up](https://res-console.cloudinary.com/duztdbp0j/media_explorer_thumbnails/c4186435b730bd70b9a38c807feab224/detailed)
 
